@@ -194,24 +194,43 @@
 ════════════════════════════════════════════════════════ -->
 <script>
   // 1. Cole aqui a URL do seu Apps Script após publicar:
-  const API_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";
+  const API_URL = "https://script.google.com/macros/s/AKfycbzX7qbpDBGnkLRbBYG4-EcWRwtM0VheEqxy8cK0be-ji_VOvWcNnbPkkoiQo3l8gIhd/exec";
 
   // 2. Edite os itens da lista quando quiser:
   const ITENS = [
-    { id: "milho",      nome: "Milho cozido",              unidade: "espigas",  meta: 30  },
-    { id: "canjica",    nome: "Canjica",                    unidade: "porções",  meta: 20  },
-    { id: "pamonha",    nome: "Pamonha",                    unidade: "unidades", meta: 25  },
-    { id: "quentao",    nome: "Quentão",                    unidade: "litros",   meta: 10  },
-    { id: "guarana",    nome: "Guaraná / Refrigerante",     unidade: "litros",   meta: 15  },
-    { id: "pipoca",     nome: "Pipoca",                     unidade: "sacos",    meta: 20  },
-    { id: "bolo_milho", nome: "Bolo de milho",              unidade: "fatias",   meta: 40  },
-    { id: "cocada",     nome: "Cocada",                     unidade: "unidades", meta: 50  },
-    { id: "pao_queijo", nome: "Pão de queijo",              unidade: "unidades", meta: 60  },
-    { id: "copo",       nome: "Copos descartáveis",         unidade: "pacotes",  meta: 5   },
-    { id: "prato",      nome: "Pratos descartáveis",        unidade: "pacotes",  meta: 5   },
-    { id: "guardanapo", nome: "Guardanapos",                unidade: "pacotes",  meta: 8   },
-    { id: "salgado",    nome: "Salgadinho",                 unidade: "sacos",    meta: 15  },
-    { id: "doce_leite", nome: "Doce de leite",              unidade: "potes",    meta: 10  },
+    { id: "vinho",      nome: "Vinho",                   unidade: "garrafões",  meta: 15 },
+    { id: "pinga",    nome: "Pinga",                   unidade: "garrafões",  meta: 5 },
+    { id: "paes",    nome: "Pães",                    unidade: "unidades",   meta: 500 },
+    { id: "pao_de_dog",    nome: "Pão de Dog",              unidade: "unidades",   meta: 300 },
+    { id: "macas",    nome: "Maças",                   unidade: "pacotes",    meta: 2 },
+    { id: "canela_em_pau",     nome: "Canela em Pau",           unidade: "pacotes",    meta: 2 },
+    { id: "cravo", nome: "Cravo",                   unidade: "pacotes",    meta: 3 },
+    { id: "gengibre",     nome: "Gengibre",                unidade: "kilo",       meta: 1 },
+    { id: "margarina", nome: "Margarina",               unidade: "kilo",       meta: 4 },
+    { id: "leite",       nome: "Leite",                   unidade: "litros",     meta: 8  },
+    { id: "acucar",      nome: "Açucar",                  unidade: "kilo",       meta: 10  },
+    { id: "sal", nome: "Sal",                     unidade: "kilo",       meta: 3  },
+    { id: "galao_de_agua",    nome: "Galão de Água",           unidade: "unidade",    meta: 2 },
+    { id: "milho",    nome: "Milho",                   unidade: "sacos",      meta: 4 },
+    { id: "papel_toalha", nome: "Papel Toalha",            unidade: "pacotes",    meta: 10 },
+    { id: "papel_higienico", nome: "Papel Higienico",         unidade: "pacotes",    meta: 10 },
+    { id: "maionese", nome: "Maionese",                unidade: "kilo",       meta: 5 },
+    { id: "mostarda", nome: "Mostarda",                unidade: "kilo",       meta: 3 },
+    { id: "ketchup", nome: "Ketchup",                 unidade: "kilo",       meta: 5 },
+    { id: "calabresa", nome: "Calabresa",               unidade: "kilo",       meta: 6 },
+    { id: "fecula_de_batata", nome: "Fécula de Batata",        unidade: "pacotes",    meta: 4 },
+    { id: "oleo", nome: "Óleo",                    unidade: "litro",      meta: 2 },
+    { id: "cebola", nome: "Cebola",                  unidade: "kilo",       meta: 1 },
+    { id: "feijão_preto", nome: "Feijão Preto",            unidade: "kilo",       meta: 3 },
+    { id: "batata", nome: "Batata",                  unidade: "sacos",      meta: 1 },
+    { id: "bacon", nome: "Bacon",                   unidade: "kilo",       meta: 2 },
+    { id: "couve", nome: "Couve",                   unidade: "maço",       meta: 4 },
+    { id: "salsicha", nome: "Salsicha",                unidade: "kilo",       meta: 65 },
+    { id: "gas", nome: "Gás",                     unidade: "botijão",    meta: 3 },
+    { id: "gelo", nome: "Gelo",                    unidade: "sacos",      meta: 5 },
+    { id: "refrigerante", nome: "Refrigerante",            unidade: "litros",     meta: 20 },
+    { id: "copo_descartável", nome: "Copo Descartável",        unidade: "caixa",      meta: 4 },
+    { id: "tnt", nome: "TNT",                     unidade: "rolos",      meta: 2 },
     { id: "outro",      nome: "Outro (especificar)",        unidade: "unidades", meta: null},
   ];
 </script>
