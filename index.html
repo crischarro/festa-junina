@@ -528,6 +528,13 @@
     renderAll();
   }
 
+  // Resolve itemId de uma contribuição — casa pelo id ou pelo nome (fallback entradas antigas)
+  function resolveItemId(c) {
+    if (c.itemId && c.itemId !== c.item) return c.itemId;
+    const byName = ITENS.find(i => i.nome === c.item);
+    return byName ? byName.id : "outro";
+  }
+
   // ── Render ────────────────────────────────────────
   function renderAll() {
     const wrap = document.getElementById("resumo");
@@ -537,7 +544,7 @@
     const totais = {};
     ITENS.forEach(i => totais[i.id] = 0);
     contributions.forEach(c => {
-      const key = c.itemId || "outro";
+      const key = resolveItemId(c);
       totais[key] = (totais[key] || 0) + Number(c.qtd);
     });
 
@@ -551,7 +558,7 @@
       const pctColor = pct >= 100 ? "#2e7d5e" : pct >= 60 ? "#e67e22" : "#c0392b";
       const isExp    = expandedId === item.id;
 
-      const contribs = contributions.filter(c => (c.itemId || "outro") === item.id);
+      const contribs = contributions.filter(c => resolveItemId(c) === item.id);
 
       const progressHTML = hasMeta ? `
         <div class="progress-wrap">
