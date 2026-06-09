@@ -617,7 +617,9 @@
   }
 
   async function removeContrib(id) {
-    if (!confirm("Remover essa contribuição?")) return;
+    const senha = prompt("Digite a senha para remover:");
+    if (senha === null) return;
+    if (senha !== "festajunina") { alert("Senha incorreta! ❌"); return; }
     try {
       const res = await fetch(`${API_URL}?action=delete&id=${id}`);
       const data = await res.json();
