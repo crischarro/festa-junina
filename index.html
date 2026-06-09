@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Festa Junina 2025 🌽</title>
+  <style>
+    /* ─── Reset & Base ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(160deg, #fff8ee 0%, #fef3e2 100%);
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* ─── Bandeirinhas ──────────────────────────────── */
+    .bandeirinhas {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding: 0 0 4px;
+      overflow: hidden;
+    }
+    .bandeira {
+      width: 28px; height: 36px;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      margin: 0 2px;
+      flex-shrink: 0;
+    }
+
+    /* ─── Header ────────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #c1121f 0%, #e63946 60%, #c1121f 100%);
+      padding-top: 8px;
+      box-shadow: 0 4px 16px #c1121f44;
+    }
+    .header-body {
+      text-align: center;
+      padding: 16px 16px 20px;
+    }
+    .header-emoji { font-size: 38px; }
+    header h1 {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #00000044;
+      margin: 6px 0 2px;
+    }
+    header p { color: #ffd166; font-size: 14px; font-weight: 600; }
+
+    /* ─── Container ─────────────────────────────────── */
+    .container { max-width: 520px; margin: 0 auto; padding: 0 12px; }
+
+    /* ─── Toast ─────────────────────────────────────── */
+    .toast {
+      background: #2a9d8f; color: #fff; text-align: center;
+      padding: 12px; border-radius: 12px; margin: 16px 0 0;
+      font-size: 16px; font-weight: 700;
+      box-shadow: 0 2px 12px #2a9d8f55;
+      display: none;
+    }
+    .toast.show { display: block; }
+
+    /* ─── Botão principal ───────────────────────────── */
+    .btn-main {
+      display: block; width: 100%; max-width: 360px;
+      margin: 24px auto 0;
+      background: linear-gradient(135deg, #e63946, #c1121f);
+      color: #fff; border: none; border-radius: 16px;
+      padding: 18px 40px; font-size: 20px; font-weight: 900;
+      cursor: pointer; box-shadow: 0 4px 20px #e6394655;
+      letter-spacing: 0.5px;
+    }
+    .btn-hint { color: #999; font-size: 12px; text-align: center; margin-top: 8px; }
+
+    /* ─── Formulário ────────────────────────────────── */
+    .form-card {
+      background: #fff; border-radius: 20px; padding: 20px;
+      margin: 20px 0 0;
+      box-shadow: 0 4px 24px #e6394622;
+      border: 2px solid #f4a26144;
+      display: none;
+    }
+    .form-card.open { display: block; }
+    .form-card h2 { font-size: 18px; color: #c1121f; font-weight: 900; margin-bottom: 16px; }
+
+    label { display: block; font-weight: 700; font-size: 13px; color: #555; margin-bottom: 5px; }
+    input, select, textarea {
+      width: 100%; padding: 12px; border-radius: 10px;
+      border: 2px solid #f0e6d3; font-size: 15px;
+      background: #fffcf7; outline: none; margin-bottom: 14px;
+    }
+    input:focus, select:focus { border-color: #f4a261; }
+
+    .qty-row { display: flex; gap: 8px; align-items: center; margin-bottom: 14px; }
+    .qty-row input { margin-bottom: 0; text-align: center; width: 80px; font-size: 22px; font-weight: 700; }
+    .qty-btn {
+      background: #f0e6d3; border: none; border-radius: 10px;
+      width: 44px; height: 44px; font-size: 22px; font-weight: 700;
+      cursor: pointer; color: #c1121f; flex-shrink: 0;
+    }
+
+    .form-actions { display: flex; gap: 10px; margin-top: 8px; }
+    .btn-cancel {
+      flex: 1; padding: 14px; background: #f0e6d3;
+      border: none; border-radius: 12px; font-size: 16px;
+      cursor: pointer; font-weight: 700; color: #888;
+    }
+    .btn-confirm {
+      flex: 2; padding: 14px;
+      background: linear-gradient(135deg, #e63946, #c1121f);
+      color: #fff; border: none; border-radius: 12px;
+      font-size: 16px; font-weight: 900; cursor: pointer;
+      box-shadow: 0 2px 12px #e6394633;
+    }
+    .btn-confirm:disabled { background: #ccc; cursor: not-allowed; box-shadow: none; }
+
+    /* ─── Resumo ─────────────────────────────────────── */
+    .section-title {
+      font-size: 18px; font-weight: 900; color: #c1121f; margin: 28px 0 14px;
+    }
+    .item-card {
+      background: #fff; border: 2px solid #f0e6d3;
+      border-radius: 14px; padding: 12px 14px; margin-bottom: 10px;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    }
+    .item-card.active { background: #fff8ee; border-color: #f4a261; }
+    .item-card-top { display: flex; justify-content: space-between; align-items: center; }
+    .item-nome { font-weight: 700; font-size: 15px; color: #333; }
+    .item-badge {
+      background: #ddd; color: #fff; border-radius: 99px;
+      padding: 2px 12px; font-size: 13px; font-weight: 900;
+      white-space: nowrap;
+    }
+    .item-badge.has-qty { background: #e63946; }
+    .progress-wrap { margin-top: 6px; }
+    .progress-labels {
+      display: flex; justify-content: space-between;
+      font-size: 11px; color: #888; margin-bottom: 2px;
+    }
+    .progress-pct { font-weight: 700; }
+    .progress-track {
+      background: #f0e6d3; border-radius: 99px; height: 8px; overflow: hidden;
+    }
+    .progress-fill { height: 100%; border-radius: 99px; transition: width 0.4s; }
+    .item-sub { font-size: 11px; color: #aaa; margin-top: 4px; }
+
+    /* ─── Lista de contribuições ─────────────────────── */
+    .contrib-header {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 10px;
+    }
+    .btn-filter-clear {
+      background: none; border: 1px solid #f4a261; border-radius: 99px;
+      color: #f4a261; font-size: 12px; padding: 4px 10px; cursor: pointer;
+    }
+    .contrib-card {
+      background: #fff; border: 1.5px solid #f0e6d3;
+      border-radius: 12px; padding: 10px 14px; margin-bottom: 8px;
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .contrib-nome { font-weight: 700; font-size: 14px; color: #333; }
+    .contrib-item { font-size: 13px; color: #666; margin-top: 2px; }
+    .contrib-item strong { color: #e63946; }
+    .contrib-obs { font-size: 11px; color: #aaa; margin-top: 2px; }
+    .contrib-hora { font-size: 10px; color: #bbb; margin-top: 3px; }
+    .btn-remove {
+      background: none; border: none; color: #ddd;
+      font-size: 22px; cursor: pointer; padding: 0 0 0 8px; line-height: 1;
+    }
+    .btn-remove:hover { color: #e63946; }
+
+    /* ─── Empty state ────────────────────────────────── */
+    .empty {
+      text-align: center; padding: 32px 20px; color: #bbb;
+      background: #fff; border-radius: 16px; margin: 20px 0;
+      border: 2px dashed #f0e6d3;
+    }
+    .empty-icon { font-size: 40px; }
+
+    .footer { text-align: center; font-size: 11px; color: #ccc; margin-top: 24px; }
+
+    /* ─── Loading ────────────────────────────────────── */
+    .loading { text-align: center; color: #aaa; padding: 20px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     ⚙️  CONFIGURAÇÃO — edite apenas esta seção
+════════════════════════════════════════════════════════ -->
+<script>
+  // 1. Cole aqui a URL do seu Apps Script após publicar:
+  const API_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";
+
+  // 2. Edite os itens da lista quando quiser:
+  const ITENS = [
+    { id: "milho",      nome: "Milho cozido",              unidade: "espigas",  meta: 30  },
+    { id: "canjica",    nome: "Canjica",                    unidade: "porções",  meta: 20  },
+    { id: "pamonha",    nome: "Pamonha",                    unidade: "unidades", meta: 25  },
+    { id: "quentao",    nome: "Quentão",                    unidade: "litros",   meta: 10  },
+    { id: "guarana",    nome: "Guaraná / Refrigerante",     unidade: "litros",   meta: 15  },
+    { id: "pipoca",     nome: "Pipoca",                     unidade: "sacos",    meta: 20  },
+    { id: "bolo_milho", nome: "Bolo de milho",              unidade: "fatias",   meta: 40  },
+    { id: "cocada",     nome: "Cocada",                     unidade: "unidades", meta: 50  },
+    { id: "pao_queijo", nome: "Pão de queijo",              unidade: "unidades", meta: 60  },
+    { id: "copo",       nome: "Copos descartáveis",         unidade: "pacotes",  meta: 5   },
+    { id: "prato",      nome: "Pratos descartáveis",        unidade: "pacotes",  meta: 5   },
+    { id: "guardanapo", nome: "Guardanapos",                unidade: "pacotes",  meta: 8   },
+    { id: "salgado",    nome: "Salgadinho",                 unidade: "sacos",    meta: 15  },
+    { id: "doce_leite", nome: "Doce de leite",              unidade: "potes",    meta: 10  },
+    { id: "outro",      nome: "Outro (especificar)",        unidade: "unidades", meta: null},
+  ];
+</script>
+<!-- ════════════════════════════════════════════════════ -->
+
+<!-- Header -->
+<header>
+  <div class="bandeirinhas" id="flags-top"></div>
+  <div class="header-body">
+    <div class="header-emoji">🌽🎪🪗</div>
+    <h1>Festa Junina 2025</h1>
+    <p>Lista Comunitária de Contribuições</p>
+  </div>
+  <div class="bandeirinhas" id="flags-bottom"></div>
+</header>
+
+<div class="container">
+
+  <div class="toast" id="toast">🎉 Registrado! Obrigado pela contribuição!</div>
+
+  <!-- Botão principal -->
+  <div id="btn-area">
+    <button class="btn-main" onclick="openForm()">✋ Eu vou levar algo!</button>
+    <p class="btn-hint">Toque para registrar sua contribuição</p>
+  </div>
+
+  <!-- Formulário -->
+  <div class="form-card" id="form-card">
+    <h2>📝 O que você vai levar?</h2>
+
+    <label>Seu nome *</label>
+    <input id="f-nome" type="text" placeholder="Ex: Maria, João..." />
+
+    <label>Item *</label>
+    <select id="f-item" onchange="onItemChange()"></select>
+
+    <div id="campo-outro" style="display:none">
+      <label>Qual item?</label>
+      <input id="f-outro" type="text" placeholder="Ex: Bolo de fubá..." />
+    </div>
+
+    <label id="label-qtd">Quantidade *</label>
+    <div class="qty-row">
+      <button class="qty-btn" onclick="changeQty(-1)">−</button>
+      <input id="f-qtd" type="number" min="1" value="1" />
+      <button class="qty-btn" onclick="changeQty(1)">+</button>
+    </div>
+
+    <label>Observação (opcional)</label>
+    <input id="f-obs" type="text" placeholder="Ex: sem açúcar, tamanho grande..." />
+
+    <div class="form-actions">
+      <button class="btn-cancel" onclick="closeForm()">Cancelar</button>
+      <button class="btn-confirm" id="btn-confirm" onclick="submitForm()">✅ Confirmar</button>
+    </div>
+  </div>
+
+  <!-- Resumo por item -->
+  <p class="section-title">📊 O que já temos</p>
+  <div id="resumo"><div class="loading">Carregando...</div></div>
+
+  <!-- Lista de contribuições -->
+  <div id="lista-section" style="display:none">
+    <div class="contrib-header">
+      <p class="section-title" style="margin:0" id="lista-title">👥 Quem vai levar</p>
+      <button class="btn-filter-clear" id="btn-clear-filter" style="display:none" onclick="clearFilter()">ver todos</button>
+    </div>
+    <div id="lista"></div>
+  </div>
+
+  <div class="empty" id="empty" style="display:none">
+    <div class="empty-icon">🌽</div>
+    <p style="margin:8px 0 0;font-size:15px">Ninguém registrou ainda.<br>Seja o primeiro!</p>
+  </div>
+
+  <p class="footer">🎪 Os dados ficam salvos numa planilha do Google</p>
+</div>
+
+<script>
+  // ─── Estado global ───────────────────────────────
+  let contributions = [];
+  let filterItemId  = null;
+
+  // ─── Bandeirinhas ────────────────────────────────
+  const CORES = ["#e63946","#f4a261","#2a9d8f","#e9c46a"];
+  function renderFlags() {
+    ["flags-top","flags-bottom"].forEach(id => {
+      const el = document.getElementById(id);
+      el.innerHTML = Array.from({length:12}, (_,i) =>
+        `<div class="bandeira" style="background:${CORES[i%4]}"></div>`
+      ).join("");
+    });
+  }
+
+  // ─── Popula o <select> de itens ──────────────────
+  function buildSelect() {
+    const sel = document.getElementById("f-item");
+    ITENS.forEach(item => {
+      const opt = document.createElement("option");
+      opt.value = item.id;
+      opt.textContent = item.nome;
+      sel.appendChild(opt);
+    });
+  }
+
+  function onItemChange() {
+    const id = document.getElementById("f-item").value;
+    const item = ITENS.find(i => i.id === id);
+    document.getElementById("campo-outro").style.display = id === "outro" ? "block" : "none";
+    document.getElementById("label-qtd").textContent =
+      `Quantidade (${item.unidade}) *`;
+  }
+
+  // ─── Formulário ──────────────────────────────────
+  function openForm() {
+    document.getElementById("form-card").classList.add("open");
+    document.getElementById("btn-area").style.display = "none";
+    onItemChange();
+  }
+  function closeForm() {
+    document.getElementById("form-card").classList.remove("open");
+    document.getElementById("btn-area").style.display = "block";
+    document.getElementById("f-nome").value = "";
+    document.getElementById("f-item").value = ITENS[0].id;
+    document.getElementById("f-outro").value = "";
+    document.getElementById("f-qtd").value = 1;
+    document.getElementById("f-obs").value = "";
+    document.getElementById("campo-outro").style.display = "none";
+    onItemChange();
+  }
+
+  function changeQty(delta) {
+    const input = document.getElementById("f-qtd");
+    input.value = Math.max(1, parseInt(input.value || 1) + delta);
+  }
+
+  async function submitForm() {
+    const nome = document.getElementById("f-nome").value.trim();
+    const itemId = document.getElementById("f-item").value;
+    const item = ITENS.find(i => i.id === itemId);
+    const nomeItem = itemId === "outro"
+      ? (document.getElementById("f-outro").value.trim() || "Outro")
+      : item.nome;
+    const qtd = parseInt(document.getElementById("f-qtd").value) || 1;
+    const obs = document.getElementById("f-obs").value.trim();
+
+    if (!nome) { alert("Coloca seu nome! 😊"); return; }
+
+    const btn = document.getElementById("btn-confirm");
+    btn.disabled = true;
+    btn.textContent = "Salvando...";
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          action: "add",
+          nome,
+          item: nomeItem,
+          itemId,
+          qtd,
+          unidade: item.unidade,
+          obs
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        closeForm();
+        showToast();
+        await loadData();
+      } else {
+        alert("Erro ao salvar. Tenta de novo!");
+      }
+    } catch {
+      alert("Erro de conexão. Verifica a internet.");
+    }
+
+    btn.disabled = false;
+    btn.textContent = "✅ Confirmar";
+  }
+
+  // ─── Toast ───────────────────────────────────────
+  function showToast() {
+    const t = document.getElementById("toast");
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 3000);
+  }
+
+  // ─── Carregar dados ──────────────────────────────
+  async function loadData() {
+    try {
+      const res = await fetch(`${API_URL}?action=list`);
+      contributions = await res.json();
+    } catch {
+      contributions = [];
+    }
+    renderResumo();
+    renderLista();
+  }
+
+  // ─── Resumo por item ─────────────────────────────
+  function renderResumo() {
+    const totais = {};
+    ITENS.forEach(i => totais[i.id] = 0);
+    contributions.forEach(c => {
+      if (totais[c.itemId] !== undefined) totais[c.itemId] += Number(c.qtd);
+      else totais[c.itemId] = Number(c.qtd);
+    });
+
+    const wrap = document.getElementById("resumo");
+    wrap.innerHTML = ITENS.map(item => {
+      const total = totais[item.id] || 0;
+      const contribs = contributions.filter(c => c.itemId === item.id);
+      const isActive = filterItemId === item.id;
+      const hasMeta = item.meta !== null;
+      const pct = hasMeta ? Math.min(100, Math.round(total / item.meta * 100)) : 0;
+      const pctColor = pct >= 100 ? "#2a9d8f" : pct >= 60 ? "#f4a261" : "#e63946";
+
+      const progressHTML = hasMeta ? `
+        <div class="progress-wrap">
+          <div class="progress-labels">
+            <span>${total} / ${item.meta} ${item.unidade}${pct >= 100 ? " ✅ completo!" : ""}</span>
+            <span class="progress-pct" style="color:${pctColor}">${pct}%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width:${pct}%;background:${pctColor}"></div>
+          </div>
+        </div>` : "";
+
+      const subHTML = contribs.length > 0
+        ? `<div class="item-sub">${contribs.length} pessoa${contribs.length > 1 ? "s" : ""} • toque para ver</div>`
+        : "";
+
+      return `
+        <div class="item-card${isActive ? " active" : ""}" onclick="toggleFilter('${item.id}')">
+          <div class="item-card-top">
+            <span class="item-nome">${item.nome}</span>
+            <span class="item-badge${total > 0 ? " has-qty" : ""}">${total} ${item.unidade}</span>
+          </div>
+          ${progressHTML}
+          ${subHTML}
+        </div>`;
+    }).join("");
+  }
+
+  // ─── Lista de contribuições ──────────────────────
+  function renderLista() {
+    const section = document.getElementById("lista-section");
+    const empty   = document.getElementById("empty");
+    const lista   = document.getElementById("lista");
+    const title   = document.getElementById("lista-title");
+    const btnClear= document.getElementById("btn-clear-filter");
+
+    if (contributions.length === 0) {
+      section.style.display = "none";
+      empty.style.display = "block";
+      return;
+    }
+
+    section.style.display = "block";
+    empty.style.display = "none";
+
+    const filtered = filterItemId
+      ? contributions.filter(c => c.itemId === filterItemId)
+      : contributions;
+
+    const filteredItem = ITENS.find(i => i.id === filterItemId);
+    title.textContent = filterItemId
+      ? `👥 Quem vai levar (${filteredItem?.nome})`
+      : "👥 Quem vai levar";
+    btnClear.style.display = filterItemId ? "inline-block" : "none";
+
+    lista.innerHTML = [...filtered].reverse().map(c => `
+      <div class="contrib-card">
+        <div>
+          <div class="contrib-nome">${esc(c.nome)}</div>
+          <div class="contrib-item">${esc(c.item)} — <strong>${c.qtd} ${esc(c.unidade)}</strong></div>
+          ${c.obs ? `<div class="contrib-obs">📝 ${esc(c.obs)}</div>` : ""}
+          <div class="contrib-hora">🕐 ${esc(c.hora)}</div>
+        </div>
+        <button class="btn-remove" onclick="removeContrib('${c.id}')" title="Remover">×</button>
+      </div>`).join("");
+  }
+
+  // ─── Filtro ──────────────────────────────────────
+  function toggleFilter(id) {
+    filterItemId = filterItemId === id ? null : id;
+    renderResumo();
+    renderLista();
+  }
+  function clearFilter() {
+    filterItemId = null;
+    renderResumo();
+    renderLista();
+  }
+
+  // ─── Remover ─────────────────────────────────────
+  async function removeContrib(id) {
+    if (!confirm("Remover essa contribuição?")) return;
+    try {
+      const res = await fetch(`${API_URL}?action=delete&id=${id}`);
+      const data = await res.json();
+      if (data.success) await loadData();
+      else alert("Erro ao remover.");
+    } catch {
+      alert("Erro de conexão.");
+    }
+  }
+
+  // ─── Sanitize ────────────────────────────────────
+  function esc(str) {
+    return String(str ?? "")
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  // ─── Init ────────────────────────────────────────
+  renderFlags();
+  buildSelect();
+  loadData();
+</script>
+</body>
+</html>
