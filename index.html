@@ -639,7 +639,7 @@
           <div class="contrib-row">
             <div class="contrib-info">
               <div class="contrib-nome">${esc(c.nome)}</div>
-              ${c.obs ? `<div class="contrib-detalhe">📝 ${esc(c.obs)} · ${esc(c.hora)}</div>` : `<div class="contrib-detalhe">${esc(c.hora)}</div>`}
+              ${c.obs ? `<div class="contrib-detalhe">📝 ${esc(c.obs)} · ${formatHora(c.hora)}</div>` : `<div class="contrib-detalhe">${formatHora(c.hora)}</div>`}
             </div>
             <div class="contrib-qty">${c.qtd} ${esc(c.unidade)}</div>
             <button class="btn-del" onclick="event.stopPropagation();removeContrib('${c.id}')" title="Remover">×</button>
@@ -661,6 +661,16 @@
           </div>
         </div>`;
     }).join("");
+
+  function formatHora(str) {
+    if (!str) return "";
+    const d = new Date(str);
+    if (isNaN(d)) return esc(str); // já está formatado (ex: "10/06/2026 20:04")
+    return d.toLocaleString("pt-BR", {
+      day: "2-digit", month: "2-digit", year: "numeric",
+      hour: "2-digit", minute: "2-digit"
+    });
+  }
   }
 
   function toggleExpand(id) {
