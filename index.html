@@ -332,6 +332,14 @@
 
   // Array de trabalho — itens dinâmicos serão injetados antes de "outro"
   let ITENS = [...ITENS_BASE];
+  
+  function sortItens() {
+  const outro = ITENS.find(i => i.id === "outro");
+  ITENS = ITENS
+    .filter(i => i.id !== "outro")
+    .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR", { sensitivity: "base" }));
+  if (outro) ITENS.push(outro);
+}
 </script>
 
 <!-- BANDEIRINHAS SVG -->
@@ -469,6 +477,7 @@
 
   // ── Select ────────────────────────────────────────
   function buildSelect() {
+    sortItens();
     rebuildSelect();
   }
 
@@ -576,6 +585,7 @@
         // Reseta ITENS para base e reinjeta dinâmicos
         ITENS = [...ITENS_BASE];
         injectDynamicItems(dynamic);
+        sortItens(); // ← adicionar aqui
         rebuildSelect();
       } else {
         // fallback: resposta antiga (array puro)
